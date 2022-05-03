@@ -19,6 +19,7 @@ namespace mathMod
             uint F = 0;
             Console.Write("Введите номер способа, которым хотите инициализировать массивы:\n1.Вручную\n2.Рандом\nОтвет: ");
             int mode = Convert.ToInt32(Console.ReadLine());
+            string[] postavki = new string[0];
             //Enter matrix and vectors
             switch (mode)
             {
@@ -194,7 +195,6 @@ namespace mathMod
                         raspr[indI, indJ] = m[indI];
                         n[indJ] -= m[indI];
                         m[indI] = 0;
-
                     }
                     else
                     {
@@ -203,6 +203,8 @@ namespace mathMod
                         n[indJ] = 0;
                     }
                 }
+                Array.Resize(ref postavki, postavki.Length + 1);
+                postavki[postavki.Length - 1] = $"Поставщик №{indI + 1} отправил {raspr[indI, indJ]} единиц продукции клиенту №{indJ + 1}";
                 for (int i = 0; i < m.Length; i++)
                 {
                     valueM += m[i];
@@ -268,6 +270,11 @@ namespace mathMod
             }
 
             Console.WriteLine($"\nF = {F} у.д.е");
+
+            for (int i = 0; i < postavki.Length; i++)
+            {
+                Console.WriteLine(postavki[i]);
+            }
         }
     }
 }
